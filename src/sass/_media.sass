@@ -1,0 +1,41 @@
+@media screen and ( max-width: 580px )
+    .todo-list
+        padding: 50px 0
+        &__inner
+            padding: 25px 40px
+        &__title
+            font-size: 28px
+            margin-bottom: 20px
+        &__add
+            flex-direction: column
+            align-items: flex-end
+            margin-bottom: 15px
+            input
+                width: 100%
+                font-size: 16px
+                margin-bottom: 15px
+            button
+                width: 35px
+                height: 35px
+
+@media screen and ( max-width: 450px )
+    .todo-list
+        &__inner
+            padding: 25px 15px
+        &__message
+            font-size: 17px
+
+@media screen and ( max-width: 380px )
+    .todo-list
+        &__inner
+            padding: 20px 10px
+    .todo
+        font-size: 12px
+        &__enumaration
+            font-size: 13px
+        &__title
+            margin-left: 3px
+
+@media screen and ( max-width: 350px )
+    .todo
+        grid-template-columns: .09fr .05fr .65fr .23fr .20fr 0.05fr;
