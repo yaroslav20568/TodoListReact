@@ -5,7 +5,7 @@ let themeValue = JSON.parse(localStorage.getItem('themeValue')) || false;
 export default function themeReducer(state = themeValue, action) {
     switch (action.type) {
         case THEME_CHANGE:
-            return !themeValue;
+            return !state;
             break;
     
         default:
