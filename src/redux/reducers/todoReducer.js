@@ -1,6 +1,6 @@
 import { TODO_ADD, TODO_COMPLETE, TODO_DELETE } from '../actions/todoAction';
 
-let arrayTodos = [];
+let arrayTodos = JSON.parse(localStorage.getItem('array')) || [];
 
 export default function todoReducer(state = arrayTodos, action) {
     switch (action.type) {

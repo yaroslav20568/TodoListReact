@@ -1,6 +1,6 @@
 import THEME_CHANGE from '../actions/themeAction';
 
-let themeValue = false;
+let themeValue = JSON.parse(localStorage.getItem('themeValue')) || false;
 
 export default function themeReducer(state = themeValue, action) {
     switch (action.type) {

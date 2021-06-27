@@ -9,4 +9,9 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer, composeWithDevTools());
 
+store.subscribe(() => {
+    localStorage.setItem('array', JSON.stringify(store.getState().todos));
+    localStorage.setItem('themeValue', store.getState().theme);
+});
+
 export default store;
