@@ -1,12 +1,11 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { themeChangeAction } from '../redux/reducers/themeReducer';
 
 
-function ToggleTheme({themeValue, setThemeValue}) {
-    function themeChange() {
-        setThemeValue(themeValue = !themeValue);
-        localStorage.setItem('themeValue', themeValue);
-    }
-
+function ToggleTheme({ themeValue }) {
+    const dispatch = useDispatch();
+    
     return (
         <div className="toggle-theme">
             <label htmlFor="checkbox_1">
@@ -14,7 +13,7 @@ function ToggleTheme({themeValue, setThemeValue}) {
                     className="toggle-theme__checkbox"
                     type="checkbox"
                     id="checkbox_1"
-                    onChange={themeChange.bind(null)} 
+                    onChange={() => dispatch(themeChangeAction())} 
                     checked={themeValue}
                 />
                 <div className="toggle-theme__fake-checkbox"></div>

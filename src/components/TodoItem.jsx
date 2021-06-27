@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
-import todoContext from '../context';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { todoCompleteAction, todoDeleteAction } from '../redux/reducers/todoReducer';
 
 
 export default function TodoItem({index, title, isChecked, date, time}) {
-    const {completedTodo, deleteTodo} = useContext(todoContext);
+    const dispatch = useDispatch();
     
     return (
         <div className="todo">
@@ -13,7 +14,7 @@ export default function TodoItem({index, title, isChecked, date, time}) {
                     className="todo__checkbox"
                     type="checkbox"
                     id={`checkbox${index + 1}`}
-                    onChange={completedTodo.bind(null, index)}
+                    onChange={() => dispatch(todoCompleteAction(index))}
                     checked={isChecked}
                 />
                 <div className="todo__fake-checkbox"></div>
@@ -21,7 +22,7 @@ export default function TodoItem({index, title, isChecked, date, time}) {
             <div className="todo__title">{title}</div>
             <div className="todo__date">{date}</div>
             <div className="todo__time">{time}</div>
-            <div className="todo__delete" onClick={deleteTodo.bind(null, index)}></div>
+            <div className="todo__delete" onClick={() => dispatch(todoDeleteAction(index))}></div>
         </div>
     )
 }

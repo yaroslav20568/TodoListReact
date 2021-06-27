@@ -1,9 +1,12 @@
 import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { todoAddAction } from '../redux/reducers/todoReducer';
 import TodoItem from './TodoItem';
 
 
-function TodoList({todos, setTodos, completedTodo, deleteTodo}) {
+function TodoList({ todos }) {
     const inputRef = useRef();
+    const dispatch = useDispatch();
 
     function getDate(date) {
         let currentDate = date.toDateString().split(' ');
@@ -24,9 +27,8 @@ function TodoList({todos, setTodos, completedTodo, deleteTodo}) {
 
     function addTodo() {
         if(inputRef.current.value) {
-            todos = [...todos, {title: inputRef.current.value.charAt(0).toUpperCase() + inputRef.current.value.substr(1).toLowerCase(), isChecked: false, date: getDate(new Date()), time: getTime(new Date())}];
-            setTodos(todos);
-            localStorage.setItem('array', JSON.stringify(todos));
+            // dispatch({type: 'TODO_ADD', payload: {title: inputRef.current.value.charAt(0).toUpperCase() + inputRef.current.value.substr(1).toLowerCase(), isChecked: false, date: getDate(new Date()), time: getTime(new Date())}});
+            dispatch(todoAddAction({title: inputRef.current.value.charAt(0).toUpperCase() + inputRef.current.value.substr(1).toLowerCase(), isChecked: false, date: getDate(new Date()), time: getTime(new Date())}));
             inputRef.current.value = '';
         }
     }
@@ -55,7 +57,7 @@ function TodoList({todos, setTodos, completedTodo, deleteTodo}) {
                     </div>
 
                     <ul className="todo-list__content">
-                        {todos.map((todo, index) => <TodoItem key={`todo_${index + 1}`}  index={index} {...todo} completedTodo={completedTodo} deleteTodo={deleteTodo} />)}
+                        {todos.map((todo, index) => <TodoItem key={`todo_${index + 1}`}  index={index} {...todo} />)}
                     </ul>
 
                     {
